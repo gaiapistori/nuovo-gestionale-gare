@@ -1,0 +1,87 @@
+<app-navbar />
+<app-gara />
+
+<h2>Registrazione Carichi</h2>
+
+<table class="custom-table">
+
+    <thead>
+        @for(col of displayedColumns; track $index){
+        <th>{{col}}</th>
+        }
+    </thead>
+    <tbody>
+        @for(atleta of atleti; track atleta.id){
+        <tr>
+            <!-- Colonna Nome -->
+            <td>{{atleta.nome}}</td>
+            <!-- Colonna D1 Carico -->
+            @if(atleta.d1_valida == null && isEditing(atleta.id, 1)){
+            <td class="edit-container" (click)="$event.stopPropagation()">
+                <input type="number" step="0.5" [(ngModel)]="editValue" (keydown.enter)="saveEdit(atleta.id, 1)"
+                    (keydown.escape)="cancelEdit()" #editInput>
+                <button class="button save" (click)="saveEdit(atleta.id, 1)">
+                    <fa-icon [icon]="faSave"></fa-icon>
+                </button>
+                <button class="button cancel" (click)="cancelEdit()">
+                    <fa-icon [icon]="faCancel"></fa-icon>
+                </button>
+            </td>
+            }
+            @else {
+            <td [ngClass]="{'valida': atleta.d1_valida === true, 'non-valida': atleta.d1_valida === false, 'editabile': atleta.d1_valida === null}"
+                (click)="startEdit(atleta.id, 1, atleta.d1_carico)">
+                {{atleta.d1_carico}}
+                @if(atleta.d1_carico % 2.5 != 0 ){
+                <fa-icon [icon]="faWarn" class="warn"></fa-icon>
+                }
+            </td>
+            }
+            <!-- Colonna D2 Carico -->
+            @if(atleta.d2_valida == null && isEditing(atleta.id, 2)){
+            <td class="edit-container" (click)="$event.stopPropagation()">
+                <input type="number" step="0.5" [(ngModel)]="editValue" (keydown.enter)="saveEdit(atleta.id, 2)"
+                    (keydown.escape)="cancelEdit()" #editInput>
+                <button class="button save" (click)="saveEdit(atleta.id, 2)">
+                    <fa-icon [icon]="faSave"></fa-icon>
+                </button>
+                <button class="button cancel" (click)="cancelEdit()">
+                    <fa-icon [icon]="faCancel"></fa-icon>
+                </button>
+            </td>
+            }
+            @else {
+            <td [ngClass]="{'valida': atleta.d2_valida === true, 'non-valida': atleta.d2_valida === false, 'editabile': atleta.d2_valida === null}"
+                (click)="startEdit(atleta.id, 2, atleta.d2_carico)">
+                {{atleta.d2_carico}}
+                @if(atleta.d2_carico % 2.5 != 0 ){
+                <fa-icon [icon]="faWarn" class="warn"></fa-icon>
+                }
+            </td>
+            }
+            <!-- Colonna D3 Carico -->
+            @if(atleta.d3_valida == null && isEditing(atleta.id, 3)){
+            <td class="edit-container" (click)="$event.stopPropagation()">
+                <input type="number" step="0.5" [(ngModel)]="editValue" (keydown.enter)="saveEdit(atleta.id, 3)"
+                    (keydown.escape)="cancelEdit()" #editInput>
+                <button class="button save" (click)="saveEdit(atleta.id, 3)">
+                    <fa-icon [icon]="faSave"></fa-icon>
+                </button>
+                <button class="button cancel" (click)="cancelEdit()">
+                    <fa-icon [icon]="faCancel"></fa-icon>
+                </button>
+            </td>
+            }
+            @else {
+            <td [ngClass]="{'valida': atleta.d3_valida === true, 'non-valida': atleta.d3_valida === false, 'editabile': atleta.d3_valida === null}"
+                (click)="startEdit(atleta.id, 3, atleta.d3_carico)">
+                {{atleta.d3_carico}}
+                @if(atleta.d3_carico % 2.5 != 0 ){
+                <fa-icon [icon]="faWarn" class="warn"></fa-icon>
+                }
+            </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+<div class="schermo">
+    <div id="container">
+        <div class="box">
+            <h4>ATLETA:</h4>
+            <h1>{{atleta?.nome}}</h1>
+            <h4>CARICO:</h4>
+            <h1>{{getCarico()}}<span id="h"> kg</span></h1>
+        </div>
+        <div class="box traffic-light-indicator" [class.default]="semaforo === null" [class.true]="semaforo === true"
+            [class.false]="semaforo === false"></div>
+    </div>
+
+    <div id="container">
+        <div class="box">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>25</th>
+                        <th>20</th>
+                        <th>15</th>
+                        <th>10</th>
+                        <th>5</th>
+                        <th>2,5</th>
+                        <th>1,25</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @for(peso of pesi; track $index){
+                        <td class='{{peso.class}}'>{{peso.quantita}}</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="box timer">
+            <h4>TIMER:</h4>
+            <h1>{{ displayTime }} <fa-icon *ngIf="!isRunning" [icon]="faPause" class="icon"></fa-icon></h1>
+        </div>
+    </div>
+</div>
+<div *ngIf="garaFinita" class="gara-finita-overlay">
+    <h1>Gara Finita</h1>
+</div>

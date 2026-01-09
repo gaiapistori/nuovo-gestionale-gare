@@ -1,0 +1,67 @@
+<app-navbar />
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="custom-form">
+    <!-- Genere -->
+    <div>
+        <label>Genere</label><br />
+
+        <label>
+            <input type="radio" formControlName="genere" value="M" />
+            M
+        </label>
+
+        <label>
+            <input type="radio" formControlName="genere" value="F" />
+            F
+        </label>
+    </div>
+
+    <!-- Gruppo -->
+    <div>
+        <label for="gruppo">Gruppo</label><br />
+        <select id="gruppo" formControlName="gruppo">
+            <option value="esordienti">esordienti</option>
+            <option value="avanzati">avanzati</option>
+            <option value="*">*</option>
+
+        </select>
+    </div>
+
+    <!-- Junior -->
+    <div>
+        <label>
+            <input type="checkbox" formControlName="junior" />
+            Junior
+        </label>
+    </div>
+
+    <button type="submit">Mostra</button>
+</form>
+
+<h1>Classifica ({{ gruppo !== '*' ? gruppo : 'Esordienti ed avanzati' }} - {{ genere }}{{ junior ? ' - Junior' : '' }})
+</h1>
+@if(atleti.length > 0){
+<table class="custom-table">
+    <thead>
+        <tr>
+            @for(header of displayedColumns; track $index){
+            <th>{{ header }}</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for(atleta of atleti; track $index){
+        <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ atleta.nome }}</td>
+            <td [ngClass]="{'valida':atleta.d1_valida == true, 'non-valida':atleta.d1_valida == false}">
+                {{atleta.d1_carico}}</td>
+            <td [ngClass]="{'valida':atleta.d2_valida == true, 'non-valida':atleta.d2_valida == false}">
+                {{atleta.d2_carico}}</td>
+            <td [ngClass]="{'valida':atleta.d3_valida == true, 'non-valida':atleta.d3_valida == false}">
+                {{atleta.d3_carico}}</td>
+            <td>{{atleta.carico_massimo}}</td>
+            <td>{{atleta.punteggio}}</td>
+        </tr>}
+    </tbody>
+</table>
+}

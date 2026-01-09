@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
+}
+
+table.custom-table {
+  //width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  color: #212529;
+  font-size: 1em;
+}
+
+thead {
+  background-color: #f8f9fa;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  border-top: 1px solid #dee2e6;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.valida {
+  background-color: #a5e6a7;
+}
+
+.non-valida {
+  background-color: #f7a6ae;
+}
+
+.attuale {
+  font-weight: bold;
+  background-color: lightblue;
+}
+
+form.custom-form {
+  margin: 0.8em 0;
+  display: inline-flex;
+  gap: 1em;
+  align-items: center;
+}

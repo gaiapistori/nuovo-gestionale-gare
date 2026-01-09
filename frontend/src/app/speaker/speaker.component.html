@@ -1,0 +1,67 @@
+<app-navbar />
+<app-gara />
+@if(atletaAttuale){
+<div class="card-atleta">
+    <h4>IN PEDANA:</h4>
+    <h1>{{atletaAttuale?.atleta?.nome}}
+        @switch(atletaAttuale?.nChiamata){
+        @case(1){
+        <span class="carico"
+            [ngClass]="{'valida':atletaAttuale.atleta.d1_valida == true, 'non-valida':atletaAttuale.atleta.d1_valida == false}">{{
+            atletaAttuale.atleta.d1_carico }} kg</span>
+        }
+        @case(2){
+        <span class="carico"
+            [ngClass]="{'valida':atletaAttuale.atleta.d2_valida == true, 'non-valida':atletaAttuale.atleta.d2_valida == false}">{{
+            atletaAttuale.atleta.d2_carico }} kg</span>
+        }
+        @case(3){
+        <span class="carico"
+            [ngClass]="{'valida':atletaAttuale.atleta.d3_valida == true, 'non-valida':atletaAttuale.atleta.d3_valida == false}">{{
+            atletaAttuale.atleta.d3_carico }} kg</span>
+        }
+        }
+    </h1>
+</div>
+}
+
+@if(atletaProssimo){
+<div class="card-atleta">
+    <h4> @if(gara?.nChiamata && atletaProssimo?.nChiamata != gara.nChiamata){
+        [Ricomincia giro]
+        } SUCCESSIVO:
+    </h4>
+    <h1>{{atletaProssimo?.atleta?.nome}}
+        @switch(atletaProssimo?.nChiamata){
+        @case(1){
+        <span class="carico"
+            [ngClass]="{'valida':atletaProssimo.atleta.d1_valida == true, 'non-valida':atletaProssimo.atleta.d1_valida == false}">{{
+            atletaProssimo.atleta.d1_carico }} kg</span>
+        }
+        @case(2){
+        <span class="carico"
+            [ngClass]="{'valida':atletaProssimo.atleta.d2_valida == true, 'non-valida':atletaProssimo.atleta.d2_valida == false}">{{
+            atletaProssimo.atleta.d2_carico }} kg</span>
+        }
+        @case(3){
+        <span class="carico"
+            [ngClass]="{'valida':atletaProssimo.atleta.d3_valida == true, 'non-valida':atletaProssimo.atleta.d3_valida == false}">{{
+            atletaProssimo.atleta.d3_carico }} kg</span>
+        }
+        }
+    </h1>
+    <div class="button-group">
+        <button (click)="setProssimo()" class="button" [disabled]="!nextButtonAbilitato">
+            Prossimo atleta
+            <fa-icon [icon]="faNext"></fa-icon>
+        </button>
+    </div>
+</div>
+}
+@if(!atletaProssimo) {
+<div class="button-group">
+    <button (click)="setProssimo()" class="button" [disabled]="!nextButtonAbilitato">
+        Concludi gara
+    </button>
+</div>
+}

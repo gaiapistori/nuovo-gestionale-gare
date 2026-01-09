@@ -1,0 +1,54 @@
+<app-navbar />
+<div class="toolbar">
+    <h2>Atleti</h2>
+    <button class="new" mat-raised-button color="primary" (click)="openCreate()">
+        <mat-icon>add</mat-icon>
+        Nuovo atleta
+    </button>
+</div>
+
+<table class="custom-table">
+
+    <thead>
+        @for(col of displayedColumns; track $index){
+        <th>{{col}}</th>
+        }
+    </thead>
+    <tbody>
+        @for(atleta of atleti; track atleta.id){
+        <tr>
+            <!-- Colonna Nome -->
+            <td>{{atleta.nome}}</td>
+            <!-- Colonna Data nascita -->
+            <td>{{atleta.nascita | date:'dd/MM/yyyy'}}</td>
+            <!-- Colonna Genere -->
+            <td>{{atleta.genere}}</td>
+            <!-- Colonna Gruppo -->
+            <td>{{atleta.gruppo}}</td>
+            <!-- Colonna Gruppo -->
+            <td>{{atleta.peso}}</td>
+            <!-- Colonna D1 Carico -->
+            <td
+                [ngClass]="{'valida': atleta.d1_valida === true, 'non-valida': atleta.d1_valida === false, 'editabile': atleta.d1_valida === null}">
+                {{atleta.d1_carico}}
+            </td>
+            <!-- Colonna D2 Carico -->
+            <td
+                [ngClass]="{'valida': atleta.d2_valida === true, 'non-valida': atleta.d2_valida === false, 'editabile': atleta.d2_valida === null}">
+                {{atleta.d2_carico}}
+            </td>
+            <!-- Colonna D3 Carico -->
+            <td
+                [ngClass]="{'valida': atleta.d3_valida === true, 'non-valida': atleta.d3_valida === false, 'editabile': atleta.d3_valida === null}">
+                {{atleta.d3_carico}}
+            </td>
+            <!-- Azioni-->
+            <td>
+                <button mat-icon-button (click)="openEdit(atleta)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

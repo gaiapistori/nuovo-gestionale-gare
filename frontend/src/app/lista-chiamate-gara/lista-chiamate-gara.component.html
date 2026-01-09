@@ -1,0 +1,50 @@
+<app-navbar />
+<app-gara />
+
+<div class="col">
+    <div>
+        <h1>Elenco {{gara?.nChiamata}}° chiamata </h1>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    @for(header of displayedColumns; track $index){
+                    <th>{{ header }}</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for(atleta of atletiPrimoGruppo; track $index){
+                <tr [ngClass]="{'attuale':atleta.id == gara?.idAtletaAttuale}">
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ atleta.nome }}</td>
+                    <td
+                        [ngClass]="{'valida':getValida(atleta, gara?.nChiamata) == true, 'non-valida':getValida(atleta, gara?.nChiamata) == false}">
+                        {{
+                        getCarico(atleta, gara?.nChiamata) }}</td>
+                </tr>}
+            </tbody>
+        </table>
+    </div>
+    @if(gara?.nChiamata != 3 && atletiSecondoGruppo.length > 0){
+    <div>
+        <h1>Elenco provvisorio {{gara?.nChiamata + 1}}° chiamata </h1>
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    @for(header of displayedColumns; track $index){
+                    <th>{{ header }}</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for(atleta of atletiSecondoGruppo; track $index){
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ atleta.nome }}</td>
+                    <td>{{getCarico(atleta, gara?.nChiamata + 1) }}</td>
+                </tr>}
+            </tbody>
+        </table>
+    </div>
+    }
+</div>

@@ -1,0 +1,30 @@
+<app-navbar />
+<app-gara />
+<h2>Avvia nuova gara</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="custom-form">
+    <!-- Genere -->
+    <div>
+        <label>Genere</label><br />
+
+        <label>
+            <input type="radio" formControlName="genere" value="M" />
+            M
+        </label>
+
+        <label>
+            <input type="radio" formControlName="genere" value="F" />
+            F
+        </label>
+    </div>
+
+    <!-- Gruppo -->
+    <div>
+        <label for="gruppo">Gruppo</label><br />
+        <select id="gruppo" formControlName="gruppo">
+            <option value="esordienti">esordienti</option>
+            <option value="avanzati">avanzati</option>
+        </select>
+    </div>
+
+    <button type="submit">Salva</button>
+</form>

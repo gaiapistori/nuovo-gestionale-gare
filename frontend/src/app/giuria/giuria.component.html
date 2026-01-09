@@ -1,0 +1,38 @@
+<app-navbar />
+<app-gara />
+
+@if(atleta){
+<h4>ATLETA:</h4>
+<h1>{{atleta?.nome}}</h1>
+<h4>CARICO:</h4>
+<h1>
+    @switch(gara?.nChiamata){
+    @case(1){
+    <span [ngClass]="{'valida':atleta.d1_valida == true, 'non-valida':atleta.d1_valida == false}">{{
+        atleta.d1_carico }}</span>
+    }
+    @case(2){
+    <span [ngClass]="{'valida':atleta.d2_valida == true, 'non-valida':atleta.d2_valida == false}">{{
+        atleta.d2_carico }}</span>
+    }
+    @case(3){
+    <span [ngClass]="{'valida':atleta.d3_valida == true, 'non-valida':atleta.d3_valida == false}">{{
+        atleta.d3_carico }}</span>
+    }
+    @default{
+    <span></span>
+    }
+    }
+    <span id="h"> kg</span>
+</h1>
+
+<div class="button-group">
+    <button class="button valida" (click)="setValidita(true)">
+        Prova VALIDA
+    </button>
+
+    <button class="button non-valida" (click)="setValidita(false)">
+        Prova NULLA
+    </button>
+</div>
+}

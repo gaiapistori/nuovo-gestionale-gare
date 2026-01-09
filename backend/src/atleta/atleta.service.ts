@@ -256,7 +256,7 @@ export class AtletaService {
         }
 
         if (!atleta) {
-            throw new NotFoundException('Atleta non trovato');
+            return null;
         }
         return { atleta, nChiamata };
     }

@@ -44,3 +44,13 @@ build/
 *.seed
 *.pid.lock
 EOF
+
+# Angular
+.angular/
+*/.angular/
+frontend/.angular/
+
+# Frontend build and dependencies
+frontend/node_modules/
+frontend/dist/
+EOF
